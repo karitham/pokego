@@ -23,6 +23,7 @@ const (
 
 // Pokemon struct represents the data structure for a Pokémon
 type Pokemon struct {
+	Path  string              `msgpack:"path"`
 	Names map[Language]string `msgpack:"names"`
 	Forms []string            `msgpack:"forms"`
 }
@@ -83,7 +84,7 @@ func showPokemon(pokemon Pokemon, showTitle, shiny bool, lang Language) {
 		}
 	}
 
-	fp := filepath.Join(rootDir, colorscriptsDir, colorSubdir, strings.ToLower(pokemon.Names[LanguageEnglish]))
+	fp := filepath.Join(rootDir, colorscriptsDir, colorSubdir, strings.ToLower(pokemon.Path))
 	content, err := assets.ReadFile(fp)
 	if err != nil {
 		fmt.Println("Error reading file:", err)
